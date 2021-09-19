@@ -3,7 +3,7 @@
 
 import React, { useContext, useCallback } from 'react'
 import { css, jsx } from '@emotion/core'
-import { StoreContext } from './musicplayer'
+import { StoreContext } from './App'
 
 const formatTime = inputSeconds => {
   let seconds = Math.floor(inputSeconds % 60)

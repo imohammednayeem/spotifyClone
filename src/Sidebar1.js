@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import React, { useState, useRef, useContext } from 'react'
 import { css, jsx } from '@emotion/core'
-import { StoreContext } from './musicplayer'
+import { StoreContext } from './App'
 import Modal from './Modal'
 import Toast from './Toast'
 // import logo from "./img/spotify-white.png";
@@ -166,7 +166,7 @@ const CSS = css`
       height: 35px;
       padding-left: 8px;
       font-size: 16px;
-      width: 100%;
+      /* width: 100%; */
       color: black;
     }
 

@@ -90,17 +90,17 @@ const SongCard = (props) => {
             {title}
           </Link>
           {props.clickMovie ? <AlbumIcon style={{ color: 'F3C583' }} /> : null}
-          {movie}
+          {props.clickMovie ? movie : null}
 
           {props.clickDuration ? (
             <HistoryIcon style={{ color: 'E8E46E' }} />
           ) : null}
-          {duration}
+          {props.clickDuration ? duration : null}
 
           {props.clickArtist ? (
             <RecordVoiceOverIcon style={{ color: 'B3E283' }} />
           ) : null}
-          {artist}
+          {props.clickArtist ? artist : null}
         </div>
         <div className="songcard_buttons">
           <Link

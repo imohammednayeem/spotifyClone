@@ -1,31 +1,31 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import SongCard from "./SongCard";
-import AddIcon from "@material-ui/icons/Add";
-import SearchIcon from "@material-ui/icons/Search";
-import "./SongList.css";
-import AlbumIcon from "@material-ui/icons/Album";
-import MusicNoteIcon from "@material-ui/icons/MusicNote";
-import HistoryIcon from "@material-ui/icons/History";
-import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
-import Checkbox from "@material-ui/core/Checkbox";
+import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import SongCard from './SongCard'
+import AddIcon from '@material-ui/icons/Add'
+import SearchIcon from '@material-ui/icons/Search'
+import './SongList.css'
+import AlbumIcon from '@material-ui/icons/Album'
+import MusicNoteIcon from '@material-ui/icons/MusicNote'
+import HistoryIcon from '@material-ui/icons/History'
+import RecordVoiceOverIcon from '@material-ui/icons/RecordVoiceOver'
+import Checkbox from '@material-ui/core/Checkbox'
 
 const SongList = (props) => {
-  const [clickTitle, setClickTitle] = useState(true);
-  const [clickMovie, setClickMovie] = useState(true);
-  const [clickDuration, setClickDuration] = useState(true);
-  const [clickArtist, setClickArtist] = useState(true);
-  const inputEl = useRef("");
-  const retrieveSongs = props.retrieveSongs;
+  const [clickTitle, setClickTitle] = useState(true)
+  const [clickMovie, setClickMovie] = useState(true)
+  const [clickDuration, setClickDuration] = useState(true)
+  const [clickArtist, setClickArtist] = useState(true)
+  const inputEl = useRef('')
+  const retrieveSongs = props.retrieveSongs
 
-  const handleClickTitle = () => setClickTitle(!clickTitle);
-  const handleClickMovie = () => setClickMovie(!clickMovie);
-  const handleClickDuration = () => setClickDuration(!clickDuration);
-  const handleClickArtist = () => setClickArtist(!clickArtist);
+  const handleClickTitle = () => setClickTitle(!clickTitle)
+  const handleClickMovie = () => setClickMovie(!clickMovie)
+  const handleClickDuration = () => setClickDuration(!clickDuration)
+  const handleClickArtist = () => setClickArtist(!clickArtist)
 
   const deleteSongHandler = (id) => {
-    props.getSongId(id);
-  };
+    props.getSongId(id)
+  }
 
   const renderSongList = props.songs.map((song) => {
     return (
@@ -39,12 +39,12 @@ const SongList = (props) => {
         clickDuration={clickDuration}
         clickArtist={clickArtist}
       />
-    );
-  });
+    )
+  })
 
   const getSearchTerm = () => {
-    props.searchKeyword(inputEl.current.value);
-  };
+    props.searchKeyword(inputEl.current.value)
+  }
 
   return (
     <div className="songlist">
@@ -61,45 +61,46 @@ const SongList = (props) => {
               value={props.term}
               onChange={getSearchTerm}
             />
-            <Link to="/add" style={{ textDecoration: "none" }}>
-              <AddIcon style={{ color: "gray" }} />
+            <Link to="/add" style={{ textDecoration: 'none' }}>
+              <AddIcon style={{ color: 'gray' }} />
             </Link>
           </div>
         </div>
       </div>
       <div className="songlist__hide">
+        {/* <h4 style={{ padding: '20px' }}>Hide</h4> */}
         <div className="songlist__hidebuttons">
-          <MusicNoteIcon style={{ color: "E99497" }} />
+          {/* <MusicNoteIcon style={{ color: 'E99497' }} />
           <Checkbox
             onClick={handleClickTitle}
             defaultChecked
             size="small"
             color="primary"
-            inputProps={{ "aria-label": "checkbox with small size" }}
-          />
-          <AlbumIcon style={{ color: "F3C583" }} />
+            inputProps={{ 'aria-label': 'checkbox with small size' }}
+          /> */}
+          <AlbumIcon style={{ color: 'F3C583' }} />
           <Checkbox
             defaultChecked
             onClick={handleClickMovie}
             size="small"
             color="primary"
-            inputProps={{ "aria-label": "checkbox with small size" }}
+            inputProps={{ 'aria-label': 'checkbox with small size' }}
           />
-          <HistoryIcon style={{ color: "E8E46E" }} />
+          <HistoryIcon style={{ color: 'E8E46E' }} />
           <Checkbox
             defaultChecked
             onClick={handleClickDuration}
             size="small"
             color="primary"
-            inputProps={{ "aria-label": "checkbox with small size" }}
+            inputProps={{ 'aria-label': 'checkbox with small size' }}
           />
-          <RecordVoiceOverIcon style={{ color: "B3E283" }} />
+          <RecordVoiceOverIcon style={{ color: 'B3E283' }} />
           <Checkbox
             onClick={handleClickArtist}
             defaultChecked
             size="small"
             color="primary"
-            inputProps={{ "aria-label": "checkbox with small size" }}
+            inputProps={{ 'aria-label': 'checkbox with small size' }}
           />
         </div>
       </div>
@@ -108,15 +109,15 @@ const SongList = (props) => {
       ) : (
         <>
           <h4
-            style={{ color: "#FF7779", padding: "10px" }}
+            style={{ color: '#FF7779', padding: '10px' }}
           >{`Couldn't find "${props.term}"`}</h4>
-          <p style={{ color: "gray", paddingLeft: "10px", fontSize: "12px" }}>
+          <p style={{ color: 'gray', paddingLeft: '10px', fontSize: '12px' }}>
             Try the right term.
           </p>
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default SongList;
+export default SongList

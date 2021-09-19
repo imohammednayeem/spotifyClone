@@ -3,7 +3,7 @@
 
 import React, { useCallback, useContext, useState } from 'react'
 import { css, jsx } from '@emotion/core'
-import { StoreContext } from './musicplayer'
+import { StoreContext } from './App'
 
 import Modal from './Modal'
 import Toast from './Toast'

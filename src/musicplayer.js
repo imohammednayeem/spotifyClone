@@ -10,8 +10,6 @@ import Content from './Content'
 import Playbar from './Playbar'
 import { Provider } from 'react-redux'
 
-export const StoreContext = createContext(null)
-
 const MusicPlayer = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -31,32 +29,28 @@ const MusicPlayer = () => {
   const song = state.media[state.currentSongId]
 
   return (
-    <StoreContext.Provider value={{ state, dispatch }}>
-      <div css={CSS}>
-        {/* <Topbar /> */}
-        <Sidebar1 />
-        <Content />
-        {/* <Playbar /> */}
+    <div css={CSS}>
+      {/* <Topbar /> */}
+      <Sidebar1 />
+      <Content />
+      {/* <Playbar /> */}
 
-        <audio
-          ref={audioRef}
-          src={
-            song && song.title
-              ? `./media/${song.title} - ${song.artist}.mp3`
-              : ''
-          }
-          onLoadedMetadata={() =>
-            dispatch({
-              type: 'SET_DURATION',
-              duration: audioRef.current.duration
-            })
-          }
-          onTimeUpdate={(e) =>
-            dispatch({ type: 'SET_CURRENT_TIME', time: e.target.currentTime })
-          }
-        />
-      </div>
-    </StoreContext.Provider>
+      <audio
+        ref={audioRef}
+        src={
+          song && song.title ? `./media/${song.title} - ${song.artist}.mp3` : ''
+        }
+        onLoadedMetadata={() =>
+          dispatch({
+            type: 'SET_DURATION',
+            duration: audioRef.current.duration
+          })
+        }
+        onTimeUpdate={(e) =>
+          dispatch({ type: 'SET_CURRENT_TIME', time: e.target.currentTime })
+        }
+      />
+    </div>
   )
 }
 
