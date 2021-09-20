@@ -18,7 +18,7 @@ import api from './api/songs'
 
 const SongCard = (props) => {
   const { id, title, movie, duration, artist, count } = props.song
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser)
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState('')
 
@@ -128,8 +128,9 @@ const SongCard = (props) => {
           </div> */}
           <IconButton
             onClick={() => {
+              console.log(props)
               if (window.confirm('Remove from the playlist?')) {
-                props.clickHandler(id)
+                props.clickTitleHandler(id)
               }
             }}
           >

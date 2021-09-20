@@ -20,7 +20,7 @@ const Modal = ({ children, show, close }) => {
 const CSS = css`
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.01);
   position: absolute;
   top: 0;
   right: 0;
@@ -31,7 +31,7 @@ const CSS = css`
   .modal-content {
     position: relative;
     width: 400px;
-    background: #211f27;
+    background: #343434;
     border-radius: 4px;
     padding: 25px;
   }
@@ -41,6 +41,7 @@ const CSS = css`
     right: 15px;
     top: 15px;
     cursor: pointer;
+    color: white;
   }
 `
 
