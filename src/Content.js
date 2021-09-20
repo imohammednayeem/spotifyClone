@@ -248,8 +248,25 @@ const CSS = css`
     font-size: initial;
   }
 
+  .fa-plus {
+    color: #f3c583;
+  }
+  .fa-heart {
+    color: #e99497;
+  }
+  .fa-heart-o {
+    color: #e99497;
+  }
+  .fa-play {
+    color: #e8e46e;
+  }
+  .fa-pause {
+    color: #b3e283;
+  }
+
   table tr {
-    border-bottom: 1px solid #282828;
+    /* border-bottom: 1px solid #282828; */
+    border-bottom: 1px solid lightgray;
   }
 
   table td {

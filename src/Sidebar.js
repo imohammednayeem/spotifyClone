@@ -1,18 +1,18 @@
-import { Avatar } from "@material-ui/core";
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectUser } from "./features/userSlice";
-import "./Sidebar.css";
+import { Avatar } from '@material-ui/core'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userSlice'
+import './Sidebar.css'
 
 function Sidebar() {
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser)
 
   const recentItem = (topic) => (
     <div className="sidebar__recentItem">
       <span className="sidebar__hash">#</span>
       <p>{topic}</p>
     </div>
-  );
+  )
 
   return (
     <div className="sidebar">
@@ -21,20 +21,17 @@ function Sidebar() {
           src="https://media-exp3.licdn.com/dms/image/C5616AQHq_JrA1k9egw/profile-displaybackgroundimage-shrink_350_1400/0/1517429266390?e=1632355200&v=beta&t=AS2O4IPsv8rzV90wkIPzTdZiijNMFAObkY47rktqTGY"
           alt=""
         />
-        <Avatar
-          src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fin.pinterest.com%2Fpin%2F5207355809656889%2F&psig=AOvVaw1cbJvjsz6vaZPsrK_JIcFl&ust=1632068058621000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCMDPp7v1iPMCFQAAAAAdAAAAABAN"
-          className="sidebar__avatar"
-        >
-          {/*src={user.photoUrl} */}
-          {/* {user.email[0]} */}t
+        <Avatar src={user.photoUrl} className="sidebar__avatar">
+          {user.email[0]}
+          {/* t */}
         </Avatar>
         <h2>
-          test
-          {/* {user.displayName} */}
+          {/* test */}
+          {user.displayName}
         </h2>
         <h4>
-          test@gmail.com
-          {/* {user.email} */}
+          {/* test@gmail.com */}
+          {user.email}
         </h4>
       </div>
       <div className="sidebar__stats">
@@ -49,14 +46,14 @@ function Sidebar() {
       </div>
       <div className="sidebar__bottom">
         <p>Recent</p>
-        {recentItem("hiphop")}
-        {recentItem("pop")}
-        {recentItem("jazz")}
-        {recentItem("rock")}
-        {recentItem("blues")}
+        {recentItem('hiphop')}
+        {recentItem('pop')}
+        {recentItem('jazz')}
+        {recentItem('rock')}
+        {recentItem('blues')}
       </div>
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

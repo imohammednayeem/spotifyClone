@@ -143,6 +143,10 @@ const CSS = css`
     }
   }
 
+  .fa-plus-circle {
+    color: #89cff0;
+  }
+
   form {
     button {
       background-color: #2bcc6c;

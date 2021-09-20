@@ -11,15 +11,17 @@ import MusicNoteIcon from '@material-ui/icons/MusicNote'
 import { useDispatch } from 'react-redux'
 import { logout } from './features/userSlice'
 import { auth } from './firebase'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, useHistory } from 'react-router-dom'
 
 function Header() {
+  const history = useHistory()
   const { state, dispatch } = useContext(StoreContext)
 
   const dispatch1 = useDispatch()
 
   const logoutOfApp = () => {
     dispatch1(logout())
+    history.push('/')
     auth.signOut()
   }
 

@@ -42,8 +42,8 @@ function Login() {
   }
 
   const register = () => {
-    if (!email) {
-      return alert('Please enter a Email!')
+    if (!email || !name) {
+      return alert('User name or Email missing!')
     }
     auth
       .createUserWithEmailAndPassword(email, password)

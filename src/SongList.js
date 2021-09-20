@@ -68,7 +68,15 @@ const SongList = (props) => {
         </div>
       </div>
       <div className="songlist__hide">
-        {/* <h4 style={{ padding: '20px' }}>Hide</h4> */}
+        <h4
+          style={{
+            paddingLeft: '20px',
+            paddingTop: '10px',
+            paddingBottom: '10px'
+          }}
+        >
+          Hide options
+        </h4>
         <div className="songlist__hidebuttons">
           {/* <MusicNoteIcon style={{ color: 'E99497' }} />
           <Checkbox
