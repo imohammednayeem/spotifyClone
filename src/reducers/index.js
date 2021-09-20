@@ -16,7 +16,7 @@ export const initialState = {
     favorites: new Set()
   },
   volume: DEFAULT_VOLUME,
-  user: null,
+  skip: true,
   email: null,
   uid: null,
   displayName: null,
@@ -34,12 +34,11 @@ export const reducer = (state, action) => {
       return { ...state, addToPlaylistId: action.songId }
     case 'ABORT_ADD_TO_PLAYLIST':
       return { ...state, addToPlaylistId: '' }
-    case 'LOGOUT':
-      state.user = null
+    case 'SKIP':
+      state.skip = false
       return { ...state }
     case 'LOGIN':
-      state.user = true
-      console.log('login clicked', state.user)
+      state.user = false
       return { ...state }
     case 'ADD_FAVORITE':
       state.playlists.favorites.add(action.songId)
@@ -54,6 +53,9 @@ export const reducer = (state, action) => {
       return { ...state, playing: false }
     case 'REMOVE_FAVORITE':
       state.playlists.favorites.delete(action.songId)
+      return { ...state }
+    case 'REMOVE_FROM_PLAYLIST':
+      state.playlists[action.playlist].delete(action.songId)
       return { ...state }
     case 'SAVE_TO_PLAYLIST':
       state.playlists[action.playlist].add(state.addToPlaylistId)

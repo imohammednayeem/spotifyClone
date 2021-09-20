@@ -128,7 +128,6 @@ const SongCard = (props) => {
           </div> */}
           <IconButton
             onClick={() => {
-              console.log(props)
               if (window.confirm('Remove from the playlist?')) {
                 props.clickTitleHandler(id)
               }

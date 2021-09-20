@@ -57,12 +57,12 @@ const Content = () => {
                     onMouseLeave={() => setPlayVisibleId('')}
                     style={{ width: 75, paddingLeft: 5 }}
                   >
-                    <PlayPause
+                    {/* <PlayPause
                       playing={state.playing}
                       songId={id}
                       isCurrentSong={state.currentSongId === id}
                       visible={playVisibleId === id}
-                    />
+                    /> */}
 
                     <span style={{ marginRight: 10 }} />
 
@@ -79,6 +79,21 @@ const Content = () => {
                         })
                       }}
                     />
+                    {currentPlaylist !== 'home' ? (
+                      <>
+                        <span style={{ marginRight: 10 }} />
+                        <i
+                          className="fa fa-minus"
+                          onClick={() => {
+                            dispatch({
+                              type: 'REMOVE_FROM_PLAYLIST',
+                              songId: id,
+                              playlist: currentPlaylist
+                            })
+                          }}
+                        />{' '}
+                      </>
+                    ) : null}
                   </td>
                   <td>{title}</td>
                   <td>{artist}</td>
@@ -261,6 +276,9 @@ const CSS = css`
     color: #e8e46e;
   }
   .fa-pause {
+    color: #b3e283;
+  }
+  .fa-minus {
     color: #b3e283;
   }
 
