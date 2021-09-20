@@ -77,7 +77,7 @@ function Login() {
       />
       <h2>Sign up for free to start listening.</h2>
       <form>
-        {/* <label>What should we call you?</label>
+        <label>What should we call you?</label>
         <input
           placeholder="Enter a profile name."
           value={name}
@@ -90,7 +90,7 @@ function Login() {
           type="text"
           value={profilePic}
           onChange={(e) => setProfilePic(e.target.value)}
-        /> */}
+        />
         <label>What's your email?</label>
         <input
           placeholder="Enter your email."
