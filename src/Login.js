@@ -1,38 +1,49 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { login } from "./features/userSlice";
-import { auth } from "./firebase";
-import "./Login.css";
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { login } from './features/userSlice'
+import { auth } from './firebase'
+import './Login.css'
+import React, {
+  useState,
+  Suspense,
+  createContext,
+  useEffect,
+  useReducer,
+  useRef
+} from 'react'
+import { initialState, reducer } from './reducers'
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [profilePic, setProfilePic] = useState("");
-  const dispatch = useDispatch();
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [profilePic, setProfilePic] = useState('')
+  const dispatch1 = useDispatch()
 
   const loginToApp = (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userAuth) =>
-        dispatch(
+        // dispatch({
+        //   type: 'LOGIN'
+        // })
+        dispatch1(
           login({
             email: userAuth.user.email,
             uid: userAuth.user.uid,
             displayName: userAuth.user.displayName,
-            profileUrl: userAuth.user.photoURL,
+            profileUrl: userAuth.user.photoURL
           })
         )
       )
-      .catch((err) => alert(err));
-  };
+      .catch((err) => alert(err))
+  }
 
   const register = () => {
-    if (!name) {
-      return alert("Please enter a Full Name!");
+    if (!email) {
+      return alert('Please enter a Email!')
     }
     auth
       .createUserWithEmailAndPassword(email, password)
@@ -40,21 +51,24 @@ function Login() {
         userAuth.user
           .updateProfile({
             displayName: name,
-            photoURL: profilePic,
+            photoURL: profilePic
           })
           .then(() => {
-            dispatch(
+            // dispatch(
+            //   { type: 'LOGIN' }
+            dispatch1(
               login({
                 email: userAuth.user.email,
                 uid: userAuth.user.uid,
                 displayName: name,
-                photoUrl: profilePic,
+                photoUrl: profilePic
               })
-            );
-          });
+            )
+          })
       })
-      .catch((error) => alert(error));
-  };
+      .catch((error) => alert(error))
+  }
+
   return (
     <div className="login">
       <img
@@ -63,7 +77,7 @@ function Login() {
       />
       <h2>Sign up for free to start listening.</h2>
       <form>
-        <label>What should we call you?</label>
+        {/* <label>What should we call you?</label>
         <input
           placeholder="Enter a profile name."
           value={name}
@@ -76,7 +90,7 @@ function Login() {
           type="text"
           value={profilePic}
           onChange={(e) => setProfilePic(e.target.value)}
-        />
+        /> */}
         <label>What's your email?</label>
         <input
           placeholder="Enter your email."
@@ -100,7 +114,7 @@ function Login() {
         </button>
       </form>
       <p>
-        Don't have an account?{"   "}
+        Don't have an account?{'   '}
         <span className="login__register" onClick={register}>
           Sign up
         </span>
@@ -110,7 +124,7 @@ function Login() {
       {/* <p>skip</p> */}
       {/* </Link> */}
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

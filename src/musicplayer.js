@@ -15,16 +15,16 @@ const MusicPlayer = () => {
 
   const audioRef = useRef()
 
-  useEffect(() => {
-    if (state.playing) {
-      audioRef.current.load()
-      audioRef.current.play()
-    } else audioRef.current.pause()
-  }, [state.playing, state.currentSongId])
+  // useEffect(() => {
+  //   if (state.playing) {
+  //     audioRef.current.load()
+  //     audioRef.current.play()
+  //   } else audioRef.current.pause()
+  // }, [state.playing, state.currentSongId])
 
-  useEffect(() => {
-    audioRef.current.volume = state.volume
-  }, [state.volume])
+  // useEffect(() => {
+  //   audioRef.current.volume = state.volume
+  // }, [state.volume])
 
   const song = state.media[state.currentSongId]
 
@@ -35,7 +35,7 @@ const MusicPlayer = () => {
       <Content />
       {/* <Playbar /> */}
 
-      <audio
+      {/* <audio
         ref={audioRef}
         src={
           song && song.title ? `./media/${song.title} - ${song.artist}.mp3` : ''
@@ -49,7 +49,7 @@ const MusicPlayer = () => {
         onTimeUpdate={(e) =>
           dispatch({ type: 'SET_CURRENT_TIME', time: e.target.currentTime })
         }
-      />
+      /> */}
     </div>
   )
 }

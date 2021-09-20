@@ -33,9 +33,10 @@ const SongList = React.lazy(() => import('./SongList'))
 export const StoreContext = createContext(null)
 
 function App() {
-  // const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
+  const user = useSelector(selectUser)
+  const dispatch1 = useDispatch()
   const [state, dispatch] = useReducer(reducer, initialState)
+
   const [songs, setSongs] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState([])
@@ -74,7 +75,6 @@ function App() {
     const newSongList = songs.filter((song) => {
       return song.id !== id
     })
-
     setSongs(newSongList)
   }
 
@@ -102,24 +102,28 @@ function App() {
     getAllSongs()
   }, [])
 
-  // useEffect(() => {}, [songs]);
-
   // useEffect(() => {
   //   auth.onAuthStateChanged((userAuth) => {
-  //     if (userAuth) {
-  //       dispatch(
-  //         login({
-  //           email: userAuth.email,
-  //           uid: userAuth.uid,
-  //           displayName: userAuth.displayName,
-  //           photoUrl: userAuth.photoURL,
-  //         })
-  //       );
-  //     } else {
-  //       dispatch(logout());
-  //     }
-  //   });
-  // }, [dispatch]);
+  //     console.log('auth changed', userAuth)
+  //   })
+  // }, [])
+
+  useEffect(() => {
+    auth.onAuthStateChanged((userAuth) => {
+      if (userAuth) {
+        dispatch1(
+          login({
+            email: userAuth.email,
+            uid: userAuth.uid,
+            displayName: userAuth.displayName,
+            photoUrl: userAuth.photoURL
+          })
+        )
+      } else {
+        dispatch(logout())
+      }
+    })
+  }, [dispatch1])
 
   const showView = () => {
     if (window.innerWidth <= 960) {
@@ -138,76 +142,76 @@ function App() {
     <>
       <StoreContext.Provider value={{ state, dispatch }}>
         <Router>
-          {/* {!user ? ( */}
-          {/* <div className="app">
-          <Login />
-        </div> */}
-          {/* ) : ( */}
-          <div className="app">
-            <Header />
-            <div className="app__body">
-              {view ? <Sidebar /> : null}
-              <Suspense
-                fallback={
-                  <div className="home">
-                    <div className="home__inputContainer">
-                      <img
-                        src="https://cdn.dribbble.com/users/189524/screenshots/1887541/foxfunwalk-800x600_v2.gif"
-                        alt="Loading..."
-                      />
-                    </div>
-                  </div>
-                }
-              >
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/info" component={Info} />
-                  <Route
-                    exact
-                    path="/trend"
-                    render={() => <Trend songs={songs} />}
-                  />
-                  <Route
-                    path="/list"
-                    exact
-                    render={(props) => (
-                      <SongList
-                        {...props}
-                        songs={searchTerm.length < 1 ? songs : searchResults}
-                        getSongId={removeSongHandler}
-                        term={searchTerm}
-                        searchKeyword={searchHandler}
-                        updateSongHandler={updateSongHandler}
-                        retrieveSongs={retrieveSongs}
-                      />
-                    )}
-                  />
-                  <Route exact path="/playlist" component={MusicPlayer} />
-
-                  <Route
-                    path="/edit"
-                    exact
-                    render={(props) => (
-                      <EditSong
-                        {...props}
-                        updateSongHandler={updateSongHandler}
-                      />
-                    )}
-                  />
-                  <Route path="/song/:id" component={SongDetail} />
-                  <Route
-                    path="/add"
-                    render={(props) => (
-                      <AddSong {...props} addSongHandler={addSongHandler} />
-                    )}
-                  />
-                  <Route path="*" component={NotFoundPage} />
-                </Switch>
-              </Suspense>
-              {view ? <Widgets /> : null}
+          {!user ? (
+            <div className="app">
+              <Login />
             </div>
-          </div>
-          {/* )} */}
+          ) : (
+            <div className="app">
+              <Header />
+              <div className="app__body">
+                {view ? <Sidebar /> : null}
+                <Suspense
+                  fallback={
+                    <div className="home">
+                      <div className="home__inputContainer">
+                        <img
+                          src="https://cdn.dribbble.com/users/189524/screenshots/1887541/foxfunwalk-800x600_v2.gif"
+                          alt="Loading..."
+                        />
+                      </div>
+                    </div>
+                  }
+                >
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/info" component={Info} />
+                    <Route
+                      exact
+                      path="/trend"
+                      render={() => <Trend songs={songs} />}
+                    />
+                    <Route
+                      path="/list"
+                      exact
+                      render={(props) => (
+                        <SongList
+                          {...props}
+                          songs={searchTerm.length < 1 ? songs : searchResults}
+                          getSongId={removeSongHandler}
+                          term={searchTerm}
+                          searchKeyword={searchHandler}
+                          updateSongHandler={updateSongHandler}
+                          retrieveSongs={retrieveSongs}
+                        />
+                      )}
+                    />
+                    <Route exact path="/playlist" component={MusicPlayer} />
+
+                    <Route
+                      path="/edit"
+                      exact
+                      render={(props) => (
+                        <EditSong
+                          {...props}
+                          updateSongHandler={updateSongHandler}
+                        />
+                      )}
+                    />
+                    <Route path="/song/:id" component={SongDetail} />
+                    <Route
+                      path="/add"
+                      render={(props) => (
+                        <AddSong {...props} addSongHandler={addSongHandler} />
+                      )}
+                    />
+                    <Route path="*" component={NotFoundPage} />
+                  </Switch>
+                </Suspense>
+                {view ? <Widgets /> : null}
+              </div>
+            </div>
+          )}
         </Router>
       </StoreContext.Provider>
     </>
