@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   height: fit-content;
   padding-bottom: 10px;
+  /* visibility: hidden; */
 }
 
 .widgets__header {

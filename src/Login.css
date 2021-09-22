@@ -16,6 +16,12 @@
   top: 40px;
 }
 
+.error {
+  color: red;
+  font-size: small;
+  align-self: center;
+}
+
 .login > h2 {
   margin-bottom: 25px;
   position: sticky;

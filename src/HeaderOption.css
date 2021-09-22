@@ -27,3 +27,7 @@
   height: 25px !important;
   width: 25px !important;
 }
+
+.headerOption__icon.active {
+  color: black;
+}
