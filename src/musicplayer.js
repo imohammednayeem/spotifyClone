@@ -1,14 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { createContext, useEffect, useReducer, useRef } from 'react'
+import React, { useReducer, useRef } from 'react'
 import { css, jsx } from '@emotion/core'
 import { initialState, reducer } from './reducers'
 import Topbar from './Topbar'
 import Sidebar1 from './Sidebar1'
 import Content from './Content'
 import Playbar from './Playbar'
-import { Provider } from 'react-redux'
 
 const MusicPlayer = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
